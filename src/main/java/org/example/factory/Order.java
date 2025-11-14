@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.factory;
 
 import org.example.observer.Observer;
 import org.example.strategy.Strategy;

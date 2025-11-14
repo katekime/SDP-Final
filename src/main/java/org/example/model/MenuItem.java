@@ -5,7 +5,23 @@ public abstract class MenuItem {
     protected double price;
     protected String description;
 
-    public abstract String getName();
-    public abstract double getPrice();
-    public abstract String getDescription();
+    public MenuItem(String name, double price, String description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public abstract String getCategory();
+
+    public abstract String prepare();
 }
