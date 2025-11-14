@@ -1,6 +1,6 @@
 package org.example.observer;
 
-import org.example.model.Order;
+import org.example.factory.Order;
 
 public interface Observer {
     void update(Order order);
