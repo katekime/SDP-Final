@@ -17,6 +17,13 @@ public class Order {
 
     public Order(int orderId) {
         this.orderId = orderId;
+        this.status = "Created";
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getOrderId() {return orderId;}
@@ -34,5 +41,21 @@ public class Order {
         }
 
         return total;
+    }
+    public void setStrategy(Strategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+    public void pay() {
+        if(paymentStrategy == null) {
+            throw new IllegalArgumentException("There is not payment Strategy");
+        }
+        boolean success = paymentStrategy.payment(this);
+        if(success) {
+            this.status = "Paid";
+        }
+        else {
+            this.status = "Failed";
+        }
+        System.out.println("Order #" + orderId + ".Status: " + status);
     }
 }

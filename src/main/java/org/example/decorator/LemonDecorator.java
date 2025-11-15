@@ -18,5 +18,12 @@ public class LemonDecorator extends MenuItemDecorator{
     public double getPrice() {
         return decoratedMenuItem.getPrice() + 0.1;
     }
-
+    @Override
+    public String getCategory() {
+        return decoratedMenuItem.getCategory();
+    }
+    @Override
+    public String prepare() {
+        return decoratedMenuItem.prepare() + " And preparing by your wish: " + plusLemon;
+    }
 }
