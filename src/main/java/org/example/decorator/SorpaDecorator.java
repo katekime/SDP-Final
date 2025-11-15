@@ -16,4 +16,13 @@ public class SorpaDecorator extends MenuItemDecorator {
     public double getPrice() {
         return decoratedMenuItem.getPrice() + 0.5;
     }
+    @Override
+    public String getCategory() {
+        return  decoratedMenuItem.getCategory();
+    }
+    @Override
+    public String prepare() {
+        return decoratedMenuItem.prepare() + "Preparing sorpa you want: " + sorpa;
+    }
+
 }
