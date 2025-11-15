@@ -24,6 +24,7 @@ public class Order {
     }
     public void setStatus(String status) {
         this.status = status;
+        notifyObservers();
     }
 
     public int getOrderId() {return orderId;}
@@ -57,5 +58,14 @@ public class Order {
             this.status = "Failed";
         }
         System.out.println("Order #" + orderId + ".Status: " + status);
+    }
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+    public void notifyObservers() {
+        for(int i = 0; i< observers.size(); i++) {
+            Observer observer = observers.get(i);
+            observer.update(this);
+        }
     }
 }
