@@ -7,6 +7,9 @@ public class WasabiDecorator extends MenuItemDecorator {
 
     public WasabiDecorator(MenuItem decoratedMenuItem, int levelOfSpiciness) {
         super(decoratedMenuItem);
+        if (levelOfSpiciness < 1 || levelOfSpiciness > 10) {
+            throw new IllegalArgumentException("Spiciness must be between 1 and 10");
+        }
         this.levelOfSpiciness = levelOfSpiciness;
     }
     @Override
@@ -16,5 +19,13 @@ public class WasabiDecorator extends MenuItemDecorator {
     @Override
     public double getPrice() {
         return decoratedMenuItem.getPrice() + 2;
+    }
+    @Override
+    public String getCategory() {
+        return decoratedMenuItem.getCategory();
+    }
+    @Override
+    public String prepare() {
+        return decoratedMenuItem.prepare() + " Preparing wasabi.Spiciness level: " + levelOfSpiciness;
     }
 }
