@@ -1,6 +1,7 @@
 package org.example.decorator;
 
 import org.example.model.MenuItem;
+import org.example.visitor.MenuItemVisitor;
 
 public class LemonDecorator extends MenuItemDecorator{
     private String plusLemon;
@@ -12,7 +13,7 @@ public class LemonDecorator extends MenuItemDecorator{
 
     @Override
     public String getDescription() {
-        return decoratedMenuItem.getDescription() + " Adding lemon.Type of lemon: " + plusLemon;
+        return decoratedMenuItem.getDescription() + ".Adding lemon.Type of lemon: " + plusLemon;
     }
     @Override
     public double getPrice() {
@@ -24,6 +25,10 @@ public class LemonDecorator extends MenuItemDecorator{
     }
     @Override
     public String prepare() {
-        return decoratedMenuItem.prepare() + " And preparing by your wish: " + plusLemon;
+        return decoratedMenuItem.prepare() + ".And preparing by your wish: " + plusLemon;
+    }
+    @Override
+    public void accept(MenuItemVisitor visitor) {
+        decoratedMenuItem.accept(visitor);
     }
 }
