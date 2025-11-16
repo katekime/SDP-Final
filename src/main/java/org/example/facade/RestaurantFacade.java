@@ -1,5 +1,5 @@
-package org.example.facade;
 
+package org.example.facade;
 import org.example.abstractFactory.CuisineFactory;
 import org.example.abstractFactory.JapaneseCuisineFactory;
 import org.example.abstractFactory.KazakhCuisineFactory;
@@ -20,6 +20,7 @@ import org.example.visitor.ServeFeeVisitor;
 public class RestaurantFacade {
     private OrderFactory orderFactory;
     private CuisineFactory cuisineFactory;
+
     public Order createOrder(String orderType) {
         if(orderType.equalsIgnoreCase("inside")) {
             orderFactory = new InsideOrderFactory();
@@ -36,10 +37,10 @@ public class RestaurantFacade {
     public void addCuisineSet(Order order, String cuisineType) {
         if(cuisineType.equalsIgnoreCase("japanese")) {
             cuisineFactory = new JapaneseCuisineFactory();
-            System.out.println("Adding Japanese cuisine Set...");
+            System.out.println("\n🍱 Adding Japanese Cuisine Set...");
         } else if(cuisineType.equalsIgnoreCase("kazakh")) {
             cuisineFactory = new KazakhCuisineFactory();
-            System.out.println("Adding Kazakh cuisine set...");
+            System.out.println("\n🍖 Adding Kazakh Cuisine Set...");
         } else {
             throw new IllegalArgumentException("Invalid cuisine type. Use 'japanese' or 'kazakh'");
         }
@@ -47,7 +48,8 @@ public class RestaurantFacade {
         order.addItem(cuisineFactory.createMainCourse());
         order.addItem(cuisineFactory.createDrink());
         order.addItem(cuisineFactory.createDessert());
-        System.out.println("Full cuisine set added to order #" + order.getOrderId());
+
+        System.out.println("✓ Full cuisine set added to order #" + order.getOrderId());
     }
     public MenuItem addCustomItem(Order order, String cuisineType, String itemType, String decorator) {
         if(cuisineType.equalsIgnoreCase("japanese")) {
@@ -55,7 +57,9 @@ public class RestaurantFacade {
         } else {
             cuisineFactory = new KazakhCuisineFactory();
         }
+
         MenuItem item = null;
+
         switch(itemType.toLowerCase()) {
             case "appetizer":
                 item = cuisineFactory.createAppetizer();
@@ -96,10 +100,11 @@ public class RestaurantFacade {
     }
     public double calculateServiceFee(Order order) {
         ServeFeeVisitor feeVisitor = new ServeFeeVisitor();
-        System.out.println("Calculating service fee, 10% per item");
+
+        System.out.println("\n--- Calculating Service Fee (10% per item) ---");
         order.acceptVisitor(feeVisitor);
         double totalFee = feeVisitor.getTotalFee();
-        System.out.println("Total service fee: $" + String.format("%.2f", totalFee));
+        System.out.println("Total Service Fee: $" + String.format("%.2f", totalFee));
         return totalFee;
     }
     public void processPayment(Order order, String paymentMethod, String currency, boolean includeServiceFee) {
@@ -114,15 +119,15 @@ public class RestaurantFacade {
         switch(paymentMethod.toLowerCase()) {
             case "card":
                 payment = new CardPayment("1234567890123456", "12/27", "123");
-                System.out.println("Selected payment method: Credit Card");
+                System.out.println("\n💳 Selected payment method: Credit Card");
                 break;
             case "cash":
                 payment = new CashPayment(finalTotal + 10); // даем на $10 больше
-                System.out.println("Selected payment method: Cash");
+                System.out.println("\n💵 Selected payment method: Cash");
                 break;
             case "kaspi":
                 payment = new KaspiAlaqanPayment("valid-palm-print-12345");
-                System.out.println("Selected payment method: Kaspi Alaqan");
+                System.out.println("\n🖐️ Selected payment method: Kaspi Alaqan");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid payment method");
@@ -143,20 +148,20 @@ public class RestaurantFacade {
         processPayment(order, paymentMethod, currency, false);
     }
     public void updateOrderStatus(Order order, String newStatus) {
-        System.out.println("Updating order status");
+        System.out.println("\n--- Updating Order Status ---");
         order.setStatus(newStatus);
     }
     public void displayOrderSummary(Order order) {
-        System.out.println("Order summary");
+        System.out.println("\n========== Order Summary ==========");
         System.out.println("Order ID: #" + order.getOrderId());
         System.out.println("Status: " + order.getStatus());
-        System.out.println("Items: ");
+        System.out.println("\nItems:");
 
         for(MenuItem item : order.getItems()) {
-            System.out.println("- " + item.getName() + " (" + item.getCategory() + ")");
-            System.out.println("Price: $" + String.format("%.2f", item.getPrice()));
-            System.out.println("Description: " + item.getDescription());
+            System.out.println("  - " + item.getName() + " (" + item.getCategory() + ")");
+            System.out.println("    Price: $" + String.format("%.2f", item.getPrice()));
+            System.out.println("    Description: " + item.getDescription());
         }
-        System.out.println("Subtotal: $" + String.format("%.2f", order.calculateTotalPrice()));
+        System.out.println("\nSubtotal: $" + String.format("%.2f", order.calculateTotalPrice()));
     }
 }
