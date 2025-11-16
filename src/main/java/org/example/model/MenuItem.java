@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.visitor.MenuItemVisitor;
+
 public abstract class MenuItem {
     protected String name;
     protected double price;
@@ -24,4 +26,6 @@ public abstract class MenuItem {
     public abstract String getCategory();
 
     public abstract String prepare();
+
+    public abstract void accept(MenuItemVisitor menuItemVisitor);
 }
