@@ -4,7 +4,7 @@ import org.example.factory.Order;
 
 public class CashPayment implements Strategy{
     private double cashProvided;
-    public CashPayment(int cashProvided) {
+    public CashPayment(double cashProvided) {
         this.cashProvided = cashProvided;
     }
     @Override
