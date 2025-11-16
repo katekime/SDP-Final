@@ -3,6 +3,7 @@ package org.example.factory;
 import org.example.model.MenuItem;
 import org.example.observer.Observer;
 import org.example.strategy.Strategy;
+import org.example.visitor.MenuItemVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,12 @@ public class Order {
         for(int i = 0; i< observers.size(); i++) {
             Observer observer = observers.get(i);
             observer.update(this);
+        }
+    }
+
+    public void acceptVisitor(MenuItemVisitor menuItemVisitor) {
+        for (MenuItem item : items) {
+            item.accept(menuItemVisitor);
         }
     }
 }
