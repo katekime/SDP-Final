@@ -10,21 +10,37 @@ public class ServeFeeVisitor implements MenuItemVisitor {
 
     @Override
     public void visit(Appetizer appetizer) {
-        totalFee += appetizer.getPrice() * 0.1;
+        double fee = appetizer.getPrice() * 0.1;
+        totalFee += fee;
+        System.out.println("  - " + appetizer.getName() + " (Appetizer) - Service fee: $" + String.format("%.2f", fee));
     }
 
     @Override
     public void visit(Dessert dessert) {
-        totalFee += dessert.getPrice() * 0.1;
+        double fee = dessert.getPrice() * 0.1;
+        totalFee += fee;
+        System.out.println("  - " + dessert.getName() + " (Dessert) - Service fee: $" + String.format("%.2f", fee));
     }
 
     @Override
     public void visit(Drink drink) {
-        totalFee += drink.getPrice() * 0.1;
+        double fee = drink.getPrice() * 0.1;
+        totalFee += fee;
+        System.out.println("  - " + drink.getName() + " (Drink) - Service fee: $" + String.format("%.2f", fee));
     }
 
     @Override
     public void visit(MainCourse mainCourse) {
-        totalFee += mainCourse.getPrice() * 0.1;
+        double fee = mainCourse.getPrice() * 0.1;
+        totalFee += fee;
+        System.out.println("  - " + mainCourse.getName() + " (Main Course) - Service fee: $" + String.format("%.2f", fee));
+    }
+
+    public double getTotalFee() {
+        return totalFee;
+    }
+
+    public void reset() {
+        totalFee = 0;
     }
 }
