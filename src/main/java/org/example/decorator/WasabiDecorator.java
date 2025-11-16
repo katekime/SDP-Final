@@ -27,7 +27,7 @@ public class WasabiDecorator extends MenuItemDecorator {
     }
     @Override
     public String prepare() {
-        return decoratedMenuItem.prepare() + ".Preparing wasabi.Spiciness level: " + levelOfSpiciness;
+        return decoratedMenuItem.prepare() + ". Preparing wasabi.Spiciness level: " + levelOfSpiciness;
     }
     @Override
     public void accept(MenuItemVisitor visitor) {

@@ -23,7 +23,7 @@ public class SorpaDecorator extends MenuItemDecorator {
     }
     @Override
     public String prepare() {
-        return decoratedMenuItem.prepare() + ".Preparing sorpa you want: " + sorpa;
+        return decoratedMenuItem.prepare() + ". Preparing sorpa you want: " + sorpa;
     }
     @Override
     public void accept(MenuItemVisitor visitor) {
