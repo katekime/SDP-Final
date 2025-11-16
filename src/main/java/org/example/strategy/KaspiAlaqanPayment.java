@@ -9,7 +9,7 @@ public class KaspiAlaqanPayment implements Strategy{
         this.palmPrint = palmPrint;
     }
     public boolean isValidPalmPrint() {
-        if(palmPrint != null) {
+        if(palmPrint != null && !palmPrint.isEmpty()) {
             return true;
         }
         return false;

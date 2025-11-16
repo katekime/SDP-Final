@@ -33,7 +33,7 @@ public class CardPayment implements Strategy{
         double commission = total * 0.01;
         double finalAmount = total + commission;
         if(!validateCard()) {
-            throw new  IllegalArgumentException("Payment failed.Please check the validation of card details");
+            return false;
         }
         System.out.println("Payment successful.Commission: " + commission + ".Total charged: " + finalAmount);
         return true;
