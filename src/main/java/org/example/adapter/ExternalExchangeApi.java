@@ -1,7 +1,6 @@
 package org.example.adapter;
 
 public class ExternalExchangeApi {
-
     public double getRate(String currencyCode) {
         switch (currencyCode.toUpperCase()) {
             case "USD":
