@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.visitor.MenuItemVisitor;
+
 public abstract class Dessert extends MenuItem {
     public Dessert(String name, double price, String description) {
         super(name, price, description);
@@ -13,5 +15,10 @@ public abstract class Dessert extends MenuItem {
     @Override
     public String prepare() {
         return "Preparing dessert: " + name;
+    }
+
+    @Override
+    public void accept(MenuItemVisitor menuItemVisitor) {
+        menuItemVisitor.visit(this);
     }
 }
