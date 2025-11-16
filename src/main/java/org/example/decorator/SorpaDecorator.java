@@ -1,6 +1,7 @@
 package org.example.decorator;
 
 import org.example.model.MenuItem;
+import org.example.visitor.MenuItemVisitor;
 
 public class SorpaDecorator extends MenuItemDecorator {
     private String sorpa;
@@ -10,7 +11,7 @@ public class SorpaDecorator extends MenuItemDecorator {
     }
     @Override
     public String getDescription() {
-        return decoratedMenuItem.getDescription() + " Adding sorpa.Sorpa type:  " + sorpa;
+        return decoratedMenuItem.getDescription() + ".Adding sorpa.Sorpa type:  " + sorpa;
     }
     @Override
     public double getPrice() {
@@ -22,7 +23,10 @@ public class SorpaDecorator extends MenuItemDecorator {
     }
     @Override
     public String prepare() {
-        return decoratedMenuItem.prepare() + "Preparing sorpa you want: " + sorpa;
+        return decoratedMenuItem.prepare() + ".Preparing sorpa you want: " + sorpa;
     }
-
+    @Override
+    public void accept(MenuItemVisitor visitor) {
+        decoratedMenuItem.accept(visitor);
+    }
 }
