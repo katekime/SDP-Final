@@ -1,6 +1,7 @@
 package org.example.decorator;
 
 import org.example.model.MenuItem;
+import org.example.visitor.MenuItemVisitor;
 
 public class WasabiDecorator extends MenuItemDecorator {
     private int levelOfSpiciness;
@@ -14,7 +15,7 @@ public class WasabiDecorator extends MenuItemDecorator {
     }
     @Override
     public String getDescription() {
-        return decoratedMenuItem.getDescription() + " Adding a wasabi.Level of wasabi spiciness: "  +  levelOfSpiciness;
+        return decoratedMenuItem.getDescription() + ".Adding a wasabi.Level of wasabi spiciness: "  +  levelOfSpiciness;
     }
     @Override
     public double getPrice() {
@@ -26,6 +27,10 @@ public class WasabiDecorator extends MenuItemDecorator {
     }
     @Override
     public String prepare() {
-        return decoratedMenuItem.prepare() + " Preparing wasabi.Spiciness level: " + levelOfSpiciness;
+        return decoratedMenuItem.prepare() + ".Preparing wasabi.Spiciness level: " + levelOfSpiciness;
+    }
+    @Override
+    public void accept(MenuItemVisitor visitor) {
+        decoratedMenuItem.accept(visitor);
     }
 }
