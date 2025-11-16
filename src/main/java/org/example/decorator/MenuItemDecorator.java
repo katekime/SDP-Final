@@ -1,7 +1,6 @@
 package org.example.decorator;
 
 import org.example.model.MenuItem;
-import org.example.visitor.MenuItemVisitor;
 
 public abstract class MenuItemDecorator extends MenuItem {
     protected MenuItem decoratedMenuItem;
